@@ -6,6 +6,7 @@
 package ist411project;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -20,13 +21,14 @@ public class OrderWindow extends JFrame implements ActionListener {
     DrinksMenuJPanel drinksMenu;
     SidesMenuJPanel sidesMenu;
     SandwichesMenu sandMenu;
-    
+    OrderSummary summary;
     //Choices
-    String drinkChoice, sidesChoice;
+    String drinkChoice, sidesChoice, breadChoice, meatChoice, cheeseChoice;
     
     public OrderWindow()   {
         super("Order Kiosk");
         addTopMenu();
+        
     }
     
     public void addTopMenu() {
@@ -35,6 +37,10 @@ public class OrderWindow extends JFrame implements ActionListener {
         drinksMenu = new DrinksMenuJPanel();
         sidesMenu = new SidesMenuJPanel();
         sandMenu = new SandwichesMenu();
+        
+        
+     summary = new OrderSummary(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
+        
         
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(topMenu,"Center");
@@ -49,11 +55,12 @@ public class OrderWindow extends JFrame implements ActionListener {
         topMenu.sandwiches.addActionListener(this);
         topMenu.complete.addActionListener(this);
         
-        //Listeners for the next buttons on the menus
+        //Listeners for the next buttons on the menus and order summary
         drinksMenu.next.addActionListener(this);
         sidesMenu.next.addActionListener(this);
         sandMenu.next.addActionListener(this);
-        
+        summary.done.addActionListener(this);
+                
     }
     
     public void showDrinksMenu()    {
@@ -76,6 +83,7 @@ public class OrderWindow extends JFrame implements ActionListener {
         drinksMenu.setVisible(false);
         sidesMenu.setVisible(false);
         sandMenu.setVisible(false);
+       // summary.setVisible(false);
         getContentPane().add(topMenu, "Center");
         topMenu.setVisible(true);
     }
@@ -87,7 +95,17 @@ public class OrderWindow extends JFrame implements ActionListener {
         getContentPane().add(sandMenu, "Center");
         sandMenu.setVisible(true);
     }
-
+    public void showOrderSummary(){
+        drinksMenu.setVisible(false);
+        sidesMenu.setVisible(false);
+        topMenu.setVisible(false);
+        sandMenu.setVisible(false);
+        summary = new OrderSummary(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
+        getContentPane().add(summary, "Center");
+        summary.setVisible(true);
+        
+        
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
@@ -101,15 +119,36 @@ public class OrderWindow extends JFrame implements ActionListener {
         if (obj == drinksMenu.next)     {
             showTopMenu();
             drinkChoice = drinksMenu.drinkChoice;
+            summary.uDrink = drinkChoice;
             System.out.println("You Selected: " + drinkChoice);
         }
-        if (obj == sidesMenu.next)      {showTopMenu();}
-        if (obj == sandMenu.next)       {showTopMenu();}
+        if (obj == sidesMenu.next)      {
+            showTopMenu();
+            sidesChoice = sidesMenu.sideChoice;
+        }
+        if (obj == summary.done){  showTopMenu();}
+        if (obj == sandMenu.next){
+            showTopMenu();
+            breadChoice = sandMenu.breadChoice;
+            meatChoice = sandMenu.meatChoice;
+            cheeseChoice = sandMenu.cheeseChoice;
+            summary.uBread = breadChoice;
+            summary.uCheese = cheeseChoice;
+            summary.uMeat = meatChoice;
+            System.out.println("Sandwich made - " + sandMenu.breadChoice + ", " + meatChoice + ", " + cheeseChoice);
+            
+        }
         
         //completes the order when the "Complete Order" button is pressed
-        if (obj == topMenu.complete)    {topMenu.setVisible(false);}
+        if (obj == topMenu.complete){
+            showOrderSummary();
+        }
     }
-    
+    public void startCooking(){
+        MakeOrder cheif = new MakeOrder(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
+        cheif = new MakeOrder(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
+        
+    }
     
     
 }

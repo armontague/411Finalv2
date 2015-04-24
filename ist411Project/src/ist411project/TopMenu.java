@@ -5,6 +5,7 @@
  */
 package ist411project;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ public class TopMenu extends JPanel implements ActionListener {
     OrderWindow orderWindow;
     
     public TopMenu()    {
+        setBackground(Color.BLUE);
         sandwiches = new JButton("Sandwiches");
         sandwiches.addActionListener(this);
         

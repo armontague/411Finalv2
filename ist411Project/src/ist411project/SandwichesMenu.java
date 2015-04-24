@@ -13,21 +13,9 @@ import javax.swing.*;
 
 public class SandwichesMenu extends JPanel implements ActionListener {
 
-    JButton white;
-    JButton wheat;
-    JButton italian;
-    JButton wholeGrain;
-    JButton ham;
-    JButton turkey;
-    JButton roastBeef;
-    JButton bologna;
-    JButton americanCheese;
-    JButton provalone;
-    JButton next;
-    JLabel sandwiches;
-    JLabel meats;
-    JLabel bread;
-    JLabel cheese;
+    JButton white, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone, next;
+    JLabel sandwiches, meats, bread, cheese;
+    String breadChoice, meatChoice, cheeseChoice;
 
     public SandwichesMenu() {
 
@@ -35,35 +23,57 @@ public class SandwichesMenu extends JPanel implements ActionListener {
         bread = new JLabel("Breads");
         sandwiches = new JLabel("Sandwiches");
         cheese = new JLabel("Cheeses");
+        
         white = new JButton("White");
         wheat = new JButton("Wheat");
         italian = new JButton("Italian");
         wholeGrain = new JButton("Whole Grain");
+        
         ham = new JButton("Ham");
         turkey = new JButton("Turkey");
         roastBeef = new JButton("Roast Beef");
         bologna = new JButton("Bologna");
+        
         americanCheese = new JButton("American");
         provalone = new JButton("Provalone");
+        
         next = new JButton("Next");
+        
         setLayout(null);
         setBackground(Color.green);
 
-        white.setBounds(150, 100, 110, 50);//X, y , sideways, hight
+        white.setBounds(150, 100, 110, 50);//x, y , sideways, hight
+            white.addActionListener(this);
+            add(white);
         wheat.setBounds(270, 100, 110, 50);
+            wheat.addActionListener(this);
+            add(wheat);
         italian.setBounds(390, 100, 110, 50);
+            italian.addActionListener(this);
+            add(italian);
         wholeGrain.setBounds(510, 100, 110, 50);
-
+            wholeGrain.addActionListener(this);
+            add(wholeGrain);
         ham.setBounds(150, 220, 110, 50);
+            ham.addActionListener(this);
+            add(ham);
         turkey.setBounds(270, 220, 110, 50);
+            turkey.addActionListener(this);
+            add(turkey);
         roastBeef.setBounds(390, 220, 110, 50);
+            roastBeef.addActionListener(this);
+            add(roastBeef);
         bologna.setBounds(510, 220, 110, 50);
-
+            bologna.addActionListener(this);
+           add(bologna); 
         americanCheese.setBounds(150, 340, 110, 50);
+            americanCheese.addActionListener(this);
+            add(americanCheese);
         provalone.setBounds(270, 340, 110, 50);
-
-        next.setBounds(600, 400, 110, 50);
-
+            provalone.addActionListener(this);
+            add(provalone);
+        next.setBounds(600, 380, 110, 50);
+            add(next);
 //--------------------------------------------------------------labels
         sandwiches.setBounds(50, 20, 150, 50);
         bread.setBounds(50, 100, 75, 50);
@@ -76,31 +86,96 @@ public class SandwichesMenu extends JPanel implements ActionListener {
         bread.setFont(font.deriveFont(Font.BOLD, 16f));
         meats.setFont(font.deriveFont(Font.BOLD, 16f));
         cheese.setFont(font.deriveFont(Font.BOLD, 16f));
-        
-
-        add(white);
-        add(wheat);
-        add(italian);
-        add(wholeGrain);
-
-        add(ham);
-        add(turkey);
-        add(roastBeef);
-        add(bologna);
-
-        add(americanCheese);
-        add(provalone);
 
         add(meats);
         add(bread);
         add(sandwiches);
-        add(cheese);
+        add(cheese);   
+    }
 
-        add(next);
+    public void breadButtonsEnabled() {
+        white.setEnabled(true);
+        wheat.setEnabled(true);
+        italian.setEnabled(true);
+        wholeGrain.setEnabled(true);
+    }
+
+    public void meatButtonsEnabled() {
+        ham.setEnabled(true);
+        turkey.setEnabled(true);
+        roastBeef.setEnabled(true);
+        bologna.setEnabled(true);
+    }
+
+    public void cheeseButtonsEnabled() {
+        americanCheese.setEnabled(true);
+        provalone.setEnabled(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object obj = e.getSource();
+
+        if (obj == white)
+        {
+            breadButtonsEnabled();
+            white.setEnabled(false);
+            breadChoice = "white";
+        }
+        if (obj == wheat)
+        {
+            breadButtonsEnabled();
+            wheat.setEnabled(false);
+            breadChoice = "wheat";
+        }
+        if (obj == italian)
+        {
+            breadButtonsEnabled();
+            italian.setEnabled(false);
+            breadChoice = "italian";
+        }
+        if (obj == wholeGrain)
+        {
+            breadButtonsEnabled();
+            wholeGrain.setEnabled(false);
+            breadChoice = "wholeGrain";
+        }
+        if (obj == ham)
+        {
+            meatButtonsEnabled();
+            ham.setEnabled(false);
+            meatChoice = "ham";
+        }
+        if (obj == turkey)
+        {
+            meatButtonsEnabled();
+            turkey.setEnabled(false);
+            meatChoice = "turkey";
+        }
+        if (obj == roastBeef)
+        {
+            meatButtonsEnabled();
+            roastBeef.setEnabled(false);
+            meatChoice = "roastBeef";
+        }
+        if (obj == bologna)
+        {
+            meatButtonsEnabled();
+            bologna.setEnabled(false);
+            meatChoice = "bologna";
+        }
+        if (obj == americanCheese)
+        {
+            cheeseButtonsEnabled();
+            americanCheese.setEnabled(false);
+            cheeseChoice = "americanCheese";
+        }
+        if (obj == provalone)
+        {
+            cheeseButtonsEnabled();
+            provalone.setEnabled(false);
+            cheeseChoice = "provalone";
+        }
+
     }
 }

@@ -24,9 +24,9 @@ public class DrinksMenuJPanel extends JPanel implements ActionListener {
     String drinkChoice;
     
     DrinksMenuJPanel() {
-        GridLayout gridLayout = new GridLayout(2,4,50,50);
+        GridLayout gridLayout = new GridLayout(2,4,25,50);
         setLayout(gridLayout);
-        
+        setBackground(Color.green);
         Dimension size = new Dimension(10,50);
             
         coke = new JButton("Coke");
@@ -68,7 +68,7 @@ public class DrinksMenuJPanel extends JPanel implements ActionListener {
             add(next);
     }
     
-    public void buttonsEnabled()    {
+    public void buttonsEnabled(){
         coke.setEnabled(true);
         dietCoke.setEnabled(true);
         sprite.setEnabled(true);
@@ -124,8 +124,6 @@ public class DrinksMenuJPanel extends JPanel implements ActionListener {
             drinkChoice = "water";
         }
     }
-    
-    
 }
     
 

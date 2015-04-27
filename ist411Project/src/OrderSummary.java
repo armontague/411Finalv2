@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ist411project;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +83,7 @@ public class OrderSummary extends JPanel implements ActionListener {
      public void actionPerformed(ActionEvent e) {
          Object obj = e.getSource();
          if (obj == done){
-             System.exit(0);
+          //   System.exit(0);
          }
      }
 }

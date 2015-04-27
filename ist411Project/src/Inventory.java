@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ist411project;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -96,8 +95,13 @@ public class Inventory extends Thread {
     public void decreasePickedBread(String s) throws IOException {
         if (s.equals("white"))
         {
+			
+            whiteBread--;
+			System.out.println("White bread: " + whiteBread);
+
             whiteBread--;
             System.out.println(s +" bread inventory: "+ whiteBread);
+
         }
         if (s.equals("wheat"))
         {

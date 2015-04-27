@@ -3,13 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ist411project;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+ 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import javax.swing.JFrame;
 
@@ -30,12 +40,11 @@ public class OrderWindow extends JFrame implements ActionListener {
     OrderSummary summary;
     //Choices
     String drinkChoice, sidesChoice, breadChoice, meatChoice, cheeseChoice;
-
+	String usersOrder;
     public OrderWindow() {
         super("Order Kiosk");
         host = "localhost";
         portNumber = 5050;
-
         addTopMenu();
 
     }
@@ -143,9 +152,11 @@ public class OrderWindow extends JFrame implements ActionListener {
         {
             showTopMenu();
             sidesChoice = sidesMenu.sideChoice;
+
         }
         if (obj == summary.done)
         {
+			
             showTopMenu();
         }
         if (obj == sandMenu.next)
@@ -157,37 +168,46 @@ public class OrderWindow extends JFrame implements ActionListener {
             summary.uBread = breadChoice;
             summary.uCheese = cheeseChoice;
             summary.uMeat = meatChoice;
+
             System.out.println("Sandwich made - " + sandMenu.breadChoice + ", " + meatChoice + ", " + cheeseChoice);
         }
-
+		
+		if (obj == summary.done){
+			//socket.close();
+		}
+		
+		
         //completes the order when the "Complete Order" button is pressed
         if (obj == topMenu.complete)
         {
-            run();
             showOrderSummary();
+			run();
         }
     }
 
     public void run() {
         try
-        {
+        { usersOrder = breadChoice + " " + meatChoice + " " + cheeseChoice + " " + sidesChoice;
             Socket socket = new Socket(host, portNumber);
-           // DataInputStream input = new DataInputStream(socket.getInputStream());
-          //  BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			InputStream is = new ByteArrayInputStream(usersOrder.getBytes());
+           // DataInputStream input = new DataInputStream(usersOrder);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
-            String usersOrder = breadChoice + " " + meatChoice + " " + cheeseChoice + " " + sidesChoice;
-            while (true)
-            {
+            
+          
                 output.writeUTF(usersOrder);
-            }
+            
         } catch (IOException e)
         {
             e.printStackTrace();
         }
+
     }
 
     public void startCooking() {
         //  MakeOrder cheif = new MakeOrder(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
         //  cheif = new MakeOrder(breadChoice, meatChoice, cheeseChoice, sidesChoice, drinkChoice);
+
     }
+
 }

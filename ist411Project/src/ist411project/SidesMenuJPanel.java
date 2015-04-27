@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import ist411project.Inventory;
 
 /**
  *
@@ -52,7 +53,7 @@ public class SidesMenuJPanel extends JPanel implements ActionListener{
             
         mozzSticks = new JButton();
             mozzSticks.setLayout(new BorderLayout());
-            mozzSticks.setText("<html>Mozzarella<br />Sticks</html>");
+            mozzSticks.setText("<html>Mozzarella<br/>Sticks</html>");
             mozzSticks.setPreferredSize(size);            
             mozzSticks.addActionListener(this);           
             add(mozzSticks);

@@ -10,15 +10,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import ist411project.Inventory;
 
 public class SandwichesMenu extends JPanel implements ActionListener {
 
     JButton white, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone, next;
     JLabel sandwiches, meats, bread, cheese;
     String breadChoice, meatChoice, cheeseChoice;
+    Inventory inventory;
 
     public SandwichesMenu() {
-
+        
         meats = new JLabel("Meats");
         bread = new JLabel("Breads");
         sandwiches = new JLabel("Sandwiches");
@@ -163,6 +165,7 @@ public class SandwichesMenu extends JPanel implements ActionListener {
             meatButtonsEnabled();
             bologna.setEnabled(false);
             meatChoice = "bologna";
+            
         }
         if (obj == americanCheese)
         {
@@ -176,6 +179,7 @@ public class SandwichesMenu extends JPanel implements ActionListener {
             provalone.setEnabled(false);
             cheeseChoice = "provalone";
         }
+
 
     }
 }

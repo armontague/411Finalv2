@@ -5,29 +5,99 @@
  */
 package ist411project;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Graeson
  */
 public class Inventory extends Thread {
 
-    int white, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone;
+    int whiteBread, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone;
     int fries, curlyFries, onionRings, salad, fruit, mozzSticks, friedPickles, yogurt;
 
     public Inventory() {
-        white = wheat = italian = wholeGrain = ham = turkey = roastBeef = bologna = americanCheese = provalone = 100;
-        fries = curlyFries = onionRings = salad = fruit = mozzSticks = friedPickles = yogurt = 100;
+        //white = wheat = italian = wholeGrain = ham = turkey = roastBeef = bologna = americanCheese = provalone = 100;
+        //fries = curlyFries = onionRings = salad = fruit = mozzSticks = friedPickles = yogurt = 100;
     }
 
     public void run() {
         
     }
-
-    public void decreasePickedBread(String s) {
+    
+    public void getInventory() throws IOException  {
+        //reads the inventory text file to get the inventory values for each item
+        
+        String filePath = "inventory.txt";
+        
+        FileReader fr = new FileReader(filePath);
+        BufferedReader inventoryReader = new BufferedReader(fr);
+        
+        int numberOfLines = 18;
+        String[] textData = new String[numberOfLines];
+        
+        int i;
+        
+        for (i=0; i < numberOfLines; i++)   {
+            textData[i] = inventoryReader.readLine();
+        }
+        //sets the local values based on the inventory items in the text file
+         whiteBread     = Integer.valueOf(textData[0]);
+         wheat          = Integer.valueOf(textData[1]);
+         italian        = Integer.valueOf(textData[2]);
+         wholeGrain     = Integer.valueOf(textData[3]);
+         ham            = Integer.valueOf(textData[4]);
+         turkey         = Integer.valueOf(textData[5]);
+         roastBeef      = Integer.valueOf(textData[6]);
+         bologna        = Integer.valueOf(textData[7]);
+         americanCheese = Integer.valueOf(textData[8]);
+         provalone      = Integer.valueOf(textData[9]);
+         fries          = Integer.valueOf(textData[10]);
+         curlyFries     = Integer.valueOf(textData[11]);
+         onionRings     = Integer.valueOf(textData[12]);
+         salad          = Integer.valueOf(textData[13]);
+         fruit          = Integer.valueOf(textData[14]);
+         mozzSticks     = Integer.valueOf(textData[15]);
+         friedPickles   = Integer.valueOf(textData[16]);
+         yogurt         = Integer.valueOf(textData[17]);
+         
+         setInventory();
+    }
+    
+    public void setInventory() throws IOException  {
+       //updates the text file to include the most recent inventory values
+       BufferedWriter fw = new BufferedWriter(new FileWriter("inventory.txt"));
+       int[] inventoryValues = new int[]{whiteBread, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone, fries, curlyFries, onionRings, salad, fruit, mozzSticks, friedPickles, yogurt};      
+       
+       try {
+        // Tab delimited file will be written to data with the name tab-file.csv
+        FileWriter fos = new FileWriter("inventory.txt");
+        PrintWriter dos = new PrintWriter(fos);
+        // loop through all your data and print it to the file
+        for (int i=0; i<inventoryValues.length; i++)
+        {
+            dos.print(inventoryValues[i]);
+            dos.println();
+        }
+            dos.close();
+            fos.close();
+        } catch (IOException e) {
+            System.out.println("Error Writing to Inventory File");
+        }
+        } 
+    
+    public void decreasePickedBread(String s) throws IOException {
         if (s.equals("white"))
         {
-            white--;
-            System.out.println(s +" bread inventory: "+ white);
+            whiteBread--;
+            System.out.println(s +" bread inventory: "+ whiteBread);
         }
         if (s.equals("wheat"))
         {
@@ -41,9 +111,10 @@ public class Inventory extends Thread {
         {
             wholeGrain--;
         }
+        setInventory();
     }
 
-    public void decreasePickedMeat(String n) {
+    public void decreasePickedMeat(String n) throws IOException {
         if (n.equals("ham"))
         {
             ham--;
@@ -60,9 +131,10 @@ public class Inventory extends Thread {
         {
             bologna--;
         }
+        setInventory();
     }
 
-    public void decreasePickedCheese(String v) {
+    public void decreasePickedCheese(String v) throws IOException {
         if (v.equals("americanCheese"))
         {
             americanCheese--;
@@ -71,9 +143,10 @@ public class Inventory extends Thread {
         {
             provalone--;
         }
+        setInventory();
     }
 
-    public void decreasePickedSide(String k) {
+    public void decreasePickedSide(String k) throws IOException {
         if (k.equals("fries"))
         {
             fries--;
@@ -107,6 +180,7 @@ public class Inventory extends Thread {
         {
             yogurt--;
         }
+        setInventory();
     }
 }
 

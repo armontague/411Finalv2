@@ -5,6 +5,7 @@
  */
 package ist411project;
 
+import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
@@ -16,8 +17,10 @@ public class IST411Project {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         OrderWindow orderWindow = new OrderWindow();
+        Inventory inventory = new Inventory();
+        inventory.getInventory();
     }
     
 }

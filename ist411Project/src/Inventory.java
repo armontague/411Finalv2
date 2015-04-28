@@ -67,10 +67,46 @@ public class Inventory extends Thread {
          friedPickles   = Integer.valueOf(textData[16]);
          yogurt         = Integer.valueOf(textData[17]);
          
-         setInventory();
+        /* System.out.println(whiteBread);
+         System.out.println(wheat);
+         System.out.println(italian);
+         System.out.println(wholeGrain);
+         System.out.println(ham);
+         System.out.println(turkey);
+         System.out.println(roastBeef);
+         System.out.println(bologna);
+         System.out.println(americanCheese);
+         System.out.println(provalone);
+         System.out.println(fries);
+         System.out.println(curlyFries);
+         System.out.println(onionRings);
+         System.out.println(salad);
+         System.out.println(fruit);
+         System.out.println(mozzSticks);
+         System.out.println(friedPickles);
+         System.out.println(yogurt);*/
+         
     }
     
     public void setInventory() throws IOException  {
+        System.out.println(whiteBread);
+         System.out.println(wheat);
+         System.out.println(italian);
+         System.out.println(wholeGrain);
+         System.out.println(ham);
+         System.out.println(turkey);
+         System.out.println(roastBeef);
+         System.out.println(bologna);
+         System.out.println(americanCheese);
+         System.out.println(provalone);
+         System.out.println(fries);
+         System.out.println(curlyFries);
+         System.out.println(onionRings);
+         System.out.println(salad);
+         System.out.println(fruit);
+         System.out.println(mozzSticks);
+         System.out.println(friedPickles);
+         System.out.println(yogurt);
        //updates the text file to include the most recent inventory values
        BufferedWriter fw = new BufferedWriter(new FileWriter("inventory.txt"));
        int[] inventoryValues = new int[]{whiteBread, wheat, italian, wholeGrain, ham, turkey, roastBeef, bologna, americanCheese, provalone, fries, curlyFries, onionRings, salad, fruit, mozzSticks, friedPickles, yogurt};      
@@ -95,13 +131,7 @@ public class Inventory extends Thread {
     public void decreasePickedBread(String s) throws IOException {
         if (s.equals("white"))
         {
-			
             whiteBread--;
-			System.out.println("White bread: " + whiteBread);
-
-            whiteBread--;
-            System.out.println(s +" bread inventory: "+ whiteBread);
-
         }
         if (s.equals("wheat"))
         {
@@ -115,7 +145,7 @@ public class Inventory extends Thread {
         {
             wholeGrain--;
         }
-        setInventory();
+       
     }
 
     public void decreasePickedMeat(String n) throws IOException {
@@ -135,7 +165,7 @@ public class Inventory extends Thread {
         {
             bologna--;
         }
-        setInventory();
+       
     }
 
     public void decreasePickedCheese(String v) throws IOException {
@@ -147,7 +177,7 @@ public class Inventory extends Thread {
         {
             provalone--;
         }
-        setInventory();
+        
     }
 
     public void decreasePickedSide(String k) throws IOException {
@@ -184,7 +214,7 @@ public class Inventory extends Thread {
         {
             yogurt--;
         }
-        setInventory();
+       
     }
 }
 

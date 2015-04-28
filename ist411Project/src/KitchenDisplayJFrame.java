@@ -21,6 +21,7 @@ public class KitchenDisplayJFrame extends Thread {
 	String[] userBought = new String[4];	
     public KitchenDisplayJFrame() throws IOException {
 		inventory = new Inventory();
+                inventory.getInventory();
         serverSocket = new ServerSocket(5050);
     }
 
@@ -34,22 +35,22 @@ public class KitchenDisplayJFrame extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             DataOutputStream output = new DataOutputStream(client.getOutputStream());
 
-            while (true)
-            {
+
+            
 			int i = 0;
-				System.out.println("IN THE SERVER WHILE LOOP");
                 String order = input.readUTF();
                 arr = order.split(" ");
 				 for ( String ss : arr) {
 					userBought[i] = ss;
 					i++;
-				}
-				inventory.decreasePickedBread("white");
+				} 
+		inventory.decreasePickedBread(userBought[0]);
                 inventory.decreasePickedMeat(userBought[1]);
                 inventory.decreasePickedCheese(userBought[2]);
                 inventory.decreasePickedSide(userBought[3]);
+                inventory.setInventory();
 
-            }
+            
 
         } catch (IOException e)
         {

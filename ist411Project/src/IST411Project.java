@@ -18,8 +18,8 @@ public class IST411Project {
      */
     public static void main(String[] args) throws IOException {
         OrderWindow orderWindow = new OrderWindow();
-        Inventory inventory = new Inventory();
-        inventory.getInventory();
+        //Inventory inventory = new Inventory();
+        //inventory.getInventory();
     }
     
 }

@@ -36,20 +36,21 @@ public class KitchenDisplayJFrame extends Thread {
             DataOutputStream output = new DataOutputStream(client.getOutputStream());
 
 
-            
+            synchronized (input){
 			int i = 0;
                 String order = input.readUTF();
                 arr = order.split(" ");
 				 for ( String ss : arr) {
 					userBought[i] = ss;
 					i++;
-				} 
+				}
+                                    
 		inventory.decreasePickedBread(userBought[0]);
                 inventory.decreasePickedMeat(userBought[1]);
                 inventory.decreasePickedCheese(userBought[2]);
                 inventory.decreasePickedSide(userBought[3]);
                 inventory.setInventory();
-
+        }
             
 
         } catch (IOException e)

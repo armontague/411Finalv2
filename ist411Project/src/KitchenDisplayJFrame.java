@@ -26,10 +26,10 @@ public class KitchenDisplayJFrame extends Thread {
     }
 
     public void run() {//   ACTING AS SERVER
-			System.out.println("In the run method");
+			System.out.println("Kitchen Server - on");
 	   try
         {
-		System.out.println("In the try block");
+		//System.out.println("In the try block");
             Socket client = serverSocket.accept();
             DataInputStream input = new DataInputStream(client.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
